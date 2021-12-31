@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to Patra corporation webpage to serve http request to users!</title>
+</head>
+<body>
+
+<h1>This is a simple project deploy by Adebayo Adu.</h1>
+<p>Welcome to my simple web app serving http request from clients..</p>
+
+</body>
+</html>
