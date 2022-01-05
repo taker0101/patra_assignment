@@ -1,0 +1,40 @@
+currentBuild.displayName = "simple-patra-application-#" + currentBuild.number 
+
+pipeline{
+    agent any
+    environment {
+      PATH="/opt/maven/bin:$PATH"
+    }
+    stages {
+        stage("Git-checked"){
+            steps {
+              git credentialsId: 'a3006431-8358-4c71-ba3c-f311b3ff18a9', url: 'https://github.com/taker0101/patra_assignment.git'
+           
+            }  
+        }
+
+        stage("Maven Build") {
+            steps { 
+                sh  "mvn clean package"
+
+            } 
+        }
+     
+        stage("deploy-dev") {
+            steps {
+                
+                sshagent(['tomcat-deployment']) {
+                    sh """
+                    
+                        scp -o StrictHostKeyChecking=no webapp/target/webapp.war  ec2-user@44.197.215.240:/opt/tomcat/webapps
+                    
+                        ssh ec2-user@44.197.215.240   /opt/tomcat/bin/shutdown.sh
+                    
+                        ssh ec2-user@44.197.215.240   /opt/tomcat/bin/startup.sh 
+                   
+                    """                  
+                }
+            }  
+        } 
+    }
+}    
