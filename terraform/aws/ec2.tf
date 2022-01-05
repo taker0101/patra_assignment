@@ -9,7 +9,7 @@ resource "aws_key_pair" "patrakey" {
 
 # Resource = patra ec2 sever
 resource "aws_instance" "patra-web" {
-  ami                    = "ami-0ed9277fb7eb570c9"
+  ami                    = "ami-0b0af3577fe5e3532"
   instance_type          = "t2.micro"
   key_name               = aws_key_pair.patrakey.key_name
   subnet_id              = aws_subnet.patra-pubSN.id
@@ -24,7 +24,7 @@ resource "aws_instance" "patra-web" {
 
 # Resource = patra ec2 sever
 resource "aws_instance" "patra-jenkins_instance" {
-  ami                    = "ami-0ed9277fb7eb570c9"
+  ami                    = "ami-0b0af3577fe5e3532"
   instance_type          = "t2.micro"
   key_name               = aws_key_pair.patrakey.key_name
   subnet_id              = aws_subnet.patra-pubSN.id
