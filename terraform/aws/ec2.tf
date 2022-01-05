@@ -1,3 +1,12 @@
+#Patra keypair
+
+resource "aws_key_pair" "patrakey" {
+   key_name = "mykeypair"
+   public_key = file(var.PATH_TO_PUBLIC_KEY)
+
+}
+
+
 # Resource = patra ec2 sever
 resource "aws_instance" "patra-web" {
   ami                    = "ami-0ed9277fb7eb570c9"
